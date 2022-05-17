@@ -18,7 +18,7 @@ router.post("/uploadImages", async(req, res)=>{
         urls.push(newPath);
         fs.unlinkSync(path);
         res.status(200).json({
-            message: 'Image Uploaded Successfully',
+            message: 'Images Uploaded Successfully',
             data: urls
         });
     }

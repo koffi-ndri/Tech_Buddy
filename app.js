@@ -4,8 +4,8 @@ const upload = require('./utils/multer');
 const bodyParser = require('body-parser');
 const path = require('path');
 
+const uploadSingleImageRouter = require('./routes/image/upload/single');
 const uploadMultipleImageRouter = require('./routes/image/upload/multiple');
-
 const app = express();
 
 app.use(express.json());
@@ -15,9 +15,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+//routers
 app.use('/api', upload.array('image'), uploadMultipleImageRouter);
+app.use('/api', upload.single('image'), uploadSingleImageRouter);
 
 
 module.exports = app;
