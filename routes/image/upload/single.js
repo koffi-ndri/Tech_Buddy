@@ -6,6 +6,7 @@ const router = express.Router();
 router.use(express.json());
 
 router.post("/uploadSingleImage", async(req, res)=>{
+  try{
     const uploader = async (path) => await cloudinary.uploads(path, 'Images');
 
     const file = req.files[0];
@@ -21,6 +22,10 @@ router.post("/uploadSingleImage", async(req, res)=>{
         data: newPath
       });
     }
+  }catch(e){
+    console.log(e);
+    res.status(500).send("Something went wrong!");
+  }
 });
 
 module.exports = router;

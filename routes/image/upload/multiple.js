@@ -6,21 +6,26 @@ const router = express.Router();
 router.use(express.json());
 
 router.post("/uploadImages", async(req, res)=>{
-    const uploader = async (path) => await cloudinary.uploads(path, 'Images');
+    try{
+        const uploader = async (path) => await cloudinary.uploads(path, 'Images');
 
-    const urls = [];
-    const files = req.files;
+        const urls = [];
+        const files = req.files;
 
-    for(const file of files){
-        const {path} = file;
-        const newPath = await uploader(path);
-
-        urls.push(newPath);
-        fs.unlinkSync(path);
-        res.status(200).json({
-            message: 'Images Uploaded Successfully',
-            data: urls
-        });
+        for(const file of files){
+            const {path} = file;
+            const newPath = await uploader(path);
+            
+            urls.push(newPath);
+            fs.unlinkSync(path);
+            res.status(200).json({
+                message: 'Images Uploaded Successfully',
+                data: urls
+            });
+        }
+    }catch(e){
+        console.log(e);
+        res.status(500).send("Something went wrong!");
     }
 });
 
