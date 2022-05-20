@@ -5,8 +5,8 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.post("/uploadVideo", async(req, res)=>{
-    res.send(req.file);
+router.post("/uploadVideos", async(req, res)=>{
+    res.send(req.files);
     // try{
     //     const results = [];
     //     const files = req.files;
