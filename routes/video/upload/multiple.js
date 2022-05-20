@@ -5,23 +5,24 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.post("/uploadImages", async(req, res)=>{
-    res.send(req.files);
+router.post("/uploadVideo", async(req, res)=>{
+    res.send(req.file);
     // try{
     //     const results = [];
     //     const files = req.files;
 
     //     for(const file of files){
     //         const {path} = file;
-    //         const result = await cloudinary.uploader.upload(path, {
-    //             folder: "Images"
+    //         const result = await cloudinary.uploader.upload_large(path, {
+    //             folder: "Videos",
+    //             chunk_size: 6000000
     //         });
             
     //         results.push(result);
     //         console.log(results);
     //         fs.unlinkSync(path);
     //         res.status(200).json({
-    //             message: 'Images Uploaded Successfully'
+    //             message: 'Videos Uploaded Successfully'
     //         });
     //     }
     // }catch(e){
