@@ -5,18 +5,20 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {uploadImage, uploadVideo} = require('./utils/multer');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
 
 // var indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-const uploadSingleImageRouter = require('./routes/image/upload/single');
-const uploadSingleVideoRouter = require('./routes/video/upload/single');
-const uploadMultipleImageRouter = require('./routes/image/upload/multiple');
-const uploadMultipleVideoRouter = require('./routes/video/upload/multiple');
-const retrieveImagesRouter = require('./routes/image/retrieve/images');
-const retrieveVideosRouter = require('./routes/video/retrieve/videos');
+const uploadSingleImageRoute = require('./routes/image/upload/single');
+const uploadSingleVideoRoute = require('./routes/video/upload/single');
+const uploadMultipleImageRoute = require('./routes/image/upload/multiple');
+const uploadMultipleVideoRoute = require('./routes/video/upload/multiple');
+const retrieveImagesRoute = require('./routes/image/retrieve/images');
+const retrieveVideosRoute = require('./routes/video/retrieve/videos');
 
-var app = express();
+const app = express();
 
 // view engine setup
 // app.set('views', path.join(__dirname, 'views'));
@@ -28,17 +30,23 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+dotenv.config();
+
+//Connect to database
+mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
+  console.log("Connected to database");
+});
+
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-//routers
-
-app.use('/api/singleImage', uploadImage.single('image'), uploadSingleImageRouter);
-app.use('/api/singleVideo', uploadVideo.single('video'),uploadSingleVideoRouter);
-app.use('/api/multipleImages', uploadImage.array('images'), uploadMultipleImageRouter);
-app.use('/api/multipleVideos', uploadVideo.array('videos'),uploadMultipleVideoRouter);
-app.use('/api/retrieveImages', retrieveImagesRouter);
-app.use('/api/retrieveVideos', retrieveVideosRouter);
+//routes
+app.use('/api/singleImage', uploadImage.single('image'), uploadSingleImageRoute);
+app.use('/api/singleVideo', uploadVideo.single('video'),uploadSingleVideoRoute);
+app.use('/api/multipleImages', uploadImage.array('images'), uploadMultipleImageRoute);
+app.use('/api/multipleVideos', uploadVideo.array('videos'),uploadMultipleVideoRoute);
+app.use('/api/retrieveImages', retrieveImagesRoute);
+app.use('/api/retrieveVideos', retrieveVideosRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
