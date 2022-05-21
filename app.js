@@ -14,6 +14,7 @@ const uploadSingleVideoRouter = require('./routes/video/upload/single');
 const uploadMultipleImageRouter = require('./routes/image/upload/multiple');
 const uploadMultipleVideoRouter = require('./routes/video/upload/multiple');
 const retrieveImagesRouter = require('./routes/image/retrieve/images');
+const retrieveVideosRouter = require('./routes/video/retrieve/videos');
 
 var app = express();
 
@@ -37,6 +38,7 @@ app.use('/api/singleVideo', uploadVideo.single('video'),uploadSingleVideoRouter)
 app.use('/api/multipleImages', uploadImage.array('images'), uploadMultipleImageRouter);
 app.use('/api/multipleVideos', uploadVideo.array('videos'),uploadMultipleVideoRouter);
 app.use('/api/retrieveImages', retrieveImagesRouter);
+app.use('/api/retrieveVideos', retrieveVideosRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

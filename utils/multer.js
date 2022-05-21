@@ -46,7 +46,7 @@ const uploadImage = multer({
 });
 
 const uploadVideo = multer({
-    storage: storage,
+    storage: storageVideo,
     fileFilter: fileFilterVideo
 });
 

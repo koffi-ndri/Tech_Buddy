@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.get('/images', retrieveImagesController);
+router.get('/', retrieveImagesController);
 
 module.exports = router;

@@ -10,7 +10,8 @@ module.exports.multipleVideoController = async(req, res)=>{
             const {path} = file;
             const result = await cloudinary.uploader.upload_large(path, {
                 folder: "Videos",
-                chunk_size: 6000000
+                chunk_size: 6000000,
+                resource_type: "video"
             });
             
             results.push(result);
