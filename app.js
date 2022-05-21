@@ -46,12 +46,12 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
 //route middlewares
 app.use('/api/register', registerUserRoute);
 app.use('/api/login', loginRoute);
-app.use('/api/singleImage', verifyAccess,uploadImage.single('image'), uploadSingleImageRoute);
-app.use('/api/singleVideo', verifyAccess,uploadVideo.single('video'),uploadSingleVideoRoute);
-app.use('/api/multipleImages', verifyAccess,uploadImage.array('images'), uploadMultipleImageRoute);
-app.use('/api/multipleVideos', verifyAccess,uploadVideo.array('videos'),uploadMultipleVideoRoute);
-app.use('/api/retrieveImages', verifyAccess,retrieveImagesRoute);
-app.use('/api/retrieveVideos', verifyAccess,retrieveVideosRoute);
+app.use('/api/singleImage', verifyAccess, uploadImage.single('image'), uploadSingleImageRoute);
+app.use('/api/singleVideo', verifyAccess, uploadVideo.single('video'),uploadSingleVideoRoute);
+app.use('/api/multipleImages', verifyAccess, uploadImage.array('images'), uploadMultipleImageRoute);
+app.use('/api/multipleVideos', verifyAccess, uploadVideo.array('videos'),uploadMultipleVideoRoute);
+app.use('/api/retrieveImages', verifyAccess, retrieveImagesRoute);
+app.use('/api/retrieveVideos', verifyAccess, retrieveVideosRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
