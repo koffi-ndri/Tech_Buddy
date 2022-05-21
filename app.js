@@ -4,6 +4,7 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {uploadImage, uploadVideo} = require('./utils/multer');
+const {verifyAccess} = require('./utils/verifyToken');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -45,12 +46,12 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
 //route middlewares
 app.use('/api/register', registerUserRoute);
 app.use('/api/login', loginRoute);
-app.use('/api/singleImage', uploadImage.single('image'), uploadSingleImageRoute);
-app.use('/api/singleVideo', uploadVideo.single('video'),uploadSingleVideoRoute);
-app.use('/api/multipleImages', uploadImage.array('images'), uploadMultipleImageRoute);
-app.use('/api/multipleVideos', uploadVideo.array('videos'),uploadMultipleVideoRoute);
-app.use('/api/retrieveImages', retrieveImagesRoute);
-app.use('/api/retrieveVideos', retrieveVideosRoute);
+app.use('/api/singleImage', verifyAccess,uploadImage.single('image'), uploadSingleImageRoute);
+app.use('/api/singleVideo', verifyAccess,uploadVideo.single('video'),uploadSingleVideoRoute);
+app.use('/api/multipleImages', verifyAccess,uploadImage.array('images'), uploadMultipleImageRoute);
+app.use('/api/multipleVideos', verifyAccess,uploadVideo.array('videos'),uploadMultipleVideoRoute);
+app.use('/api/retrieveImages', verifyAccess,retrieveImagesRoute);
+app.use('/api/retrieveVideos', verifyAccess,retrieveVideosRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
