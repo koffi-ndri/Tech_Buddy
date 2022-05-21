@@ -12,6 +12,7 @@ const dotenv = require('dotenv');
 // var usersRouter = require('./routes/users');
 
 const registerUserRoute = require('./routes/authentication/register');
+const loginRoute = require('./routes/authentication/login');
 const uploadSingleImageRoute = require('./routes/image/upload/single');
 const uploadSingleVideoRoute = require('./routes/video/upload/single');
 const uploadMultipleImageRoute = require('./routes/image/upload/multiple');
@@ -43,6 +44,7 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
 
 //route middlewares
 app.use('/api/register', registerUserRoute);
+app.use('/api/login', loginRoute);
 app.use('/api/singleImage', uploadImage.single('image'), uploadSingleImageRoute);
 app.use('/api/singleVideo', uploadVideo.single('video'),uploadSingleVideoRoute);
 app.use('/api/multipleImages', uploadImage.array('images'), uploadMultipleImageRoute);
