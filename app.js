@@ -40,7 +40,7 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-//routes
+//route middlewares
 app.use('/api/singleImage', uploadImage.single('image'), uploadSingleImageRoute);
 app.use('/api/singleVideo', uploadVideo.single('video'),uploadSingleVideoRoute);
 app.use('/api/multipleImages', uploadImage.array('images'), uploadMultipleImageRoute);
