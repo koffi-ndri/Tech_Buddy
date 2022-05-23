@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.post("/uploadVideos", multipleVideoController);
+router.post("/", multipleVideoController);
 
 module.exports = router;

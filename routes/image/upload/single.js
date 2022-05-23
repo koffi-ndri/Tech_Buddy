@@ -5,6 +5,6 @@ const router = express.Router();
 
 router.use(express.json());
 
-router.post("/uploadSingleImage", singleImageController);
+router.post("/", singleImageController);
 
 module.exports = router;
