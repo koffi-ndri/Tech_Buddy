@@ -8,11 +8,11 @@ chai.should();
 chai.use(chaiHttp);
 
 describe("Tech Buddy API", () => {
-    describe('POST /api/multipleVideosUpload', () =>{
+    describe('GET /api/retrieveImages', () =>{
 
-        it('it should not POST any videos due to unauthorized access', (done) => {
+        it('it should not GET any images due to unauthorized access', (done) => {
             chai.request(server)
-                .post('/api/multipleVideosUpload')
+                .get('/api/retrieveImages')
                 .end((err, response) =>{
                     response.should.have.status(401);
                     response.text.should.be.eq("Access Denied");
