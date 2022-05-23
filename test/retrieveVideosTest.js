@@ -10,7 +10,7 @@ chai.use(chaiHttp);
 describe("Tech Buddy API", () => {
     describe('GET /api/retrieveVideos', () =>{
 
-        it('it should not GET any images due to unauthorized access', (done) => {
+        it('it should not GET any videos due to unauthorized access', (done) => {
             chai.request(server)
                 .get('/api/retrieveVideos')
                 .end((err, response) =>{
