@@ -8,7 +8,7 @@ chai.should();
 chai.use(chaiHttp);
 
 //let user;
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg5NDM0YjY0MmMwMDcwNWM4NmRkM2EiLCJpYXQiOjE2NTMxNjY5NjN9.sr0PZfGQBIotZ7gb8v9EOhHevJIEd3RlvGtseq_kVyA';
+//let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg5NDM0YjY0MmMwMDcwNWM4NmRkM2EiLCJpYXQiOjE2NTMxNjY5NjN9.sr0PZfGQBIotZ7gb8v9EOhHevJIEd3RlvGtseq_kVyA';
     // user = User.find({}, (err, userlist) =>{
     //     if(err){
     //         return;
@@ -20,8 +20,10 @@ let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Mjg5NDM0YjY0MmMwMD
     //token = userToken(user.email);
 
 describe("Tech Buddy API", () => {
-    describe('GET /api/retrieveImages', () =>{
-
+    describe('GET /api/retrieveImages', async() =>{
+        const userEmail = "Andrew@abcd.com";
+        const token = await userToken(userEmail)
+        console.log(token)
         it('it should GET a list of images urls', (done) =>{
             chai.request(server)
                 .get('/api/retrieveImages')

@@ -19,6 +19,7 @@ module.exports.loginController = async(req, res) =>{
 
     //Create and assign a token
     const token = await userToken(req.body.email);
+    console.log(user)
     res.header('auth-token', token).send(token);
 
     //res.send("User Logged in");
