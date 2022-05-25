@@ -2,7 +2,7 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
 const {userToken} = require('../utils/token');
-const User = require('../model/User');
+//const User = require('../model/User');
 chai.should();
 
 chai.use(chaiHttp);
@@ -23,7 +23,6 @@ describe("Tech Buddy API", () => {
     describe('GET /api/retrieveImages', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail)
-        console.log(token)
         it('it should GET a list of images urls', (done) =>{
             chai.request(server)
                 .get('/api/retrieveImages')
@@ -36,7 +35,7 @@ describe("Tech Buddy API", () => {
                 });
         });
 
-        it('it should not GET any images due to unauthorized access', (done) => {
+        it('it should not retrieve any images due to unauthorized access', (done) => {
             chai.request(server)
                 .get('/api/retrieveImages')
                 .end((err, response) =>{
