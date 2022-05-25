@@ -21,7 +21,7 @@ describe("Tech Buddy API", () => {
                     if(err){ 
                         console.log(err);
                     };
-                    response.should.have.status(201);
+                    response.should.be.a('object');
                     return done();
                 });
         });
