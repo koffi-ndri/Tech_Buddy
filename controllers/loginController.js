@@ -2,6 +2,7 @@ const User = require('../model/User');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const {loginValidation} = require('../utils/hapiJoi');
+const {userToken} = require('../utils/token');
 
 module.exports.loginController = async(req, res) =>{
     //Data validation
@@ -17,8 +18,10 @@ module.exports.loginController = async(req, res) =>{
     if(!validPass) return res.status(400).send('Invalid password');
 
     //Create and assign a token
-    const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET, {expiresIn: "1h"});
+    const token = await userToken(req.body.email);
     res.header('auth-token', token).send(token);
 
     //res.send("User Logged in");
 };
+
+//{_id: user._id}, process.env.TOKEN_SECRET, {expiresIn: "1h"}
