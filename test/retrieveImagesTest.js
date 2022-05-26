@@ -22,7 +22,7 @@ chai.use(chaiHttp);
 describe("Tech Buddy API", () => {
     describe('GET /api/retrieveImages', async() =>{
         const userEmail = "Andrew@abcd.com";
-        const token = await userToken(userEmail)
+        const token = await userToken(userEmail);
         it('it should GET a list of images urls', (done) =>{
             chai.request(server)
                 .get('/api/retrieveImages')

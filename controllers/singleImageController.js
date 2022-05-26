@@ -10,7 +10,7 @@ module.exports.singleImageController = async(req, res) =>{
         });
        console.log(result);
         fs.unlinkSync(path);
-        res.status(201).json({
+        res.status(200).json({
           message: 'Image Uploaded Successfully'
         });
      }catch(e){
