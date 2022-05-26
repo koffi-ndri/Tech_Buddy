@@ -8,7 +8,7 @@ chai.should();
 chai.use(chaiHttp);
 
 describe("Tech Buddy API", () => {
-    describe('POST /api/singleVideoUpload', () =>{
+    describe('POST /api/singleVideoUpload', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
 
