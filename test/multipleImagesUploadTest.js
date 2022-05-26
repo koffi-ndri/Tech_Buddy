@@ -12,7 +12,7 @@ describe("Tech Buddy API", () => {
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
 
-        it('it should not POST any image due to server error', (done) => {
+        it('it should not POST any images due to server error', (done) => {
             chai.request(server)
                 .post('/api/multipleImagesUpload')
                 .set('auth-token', token)
