@@ -12,6 +12,19 @@ describe("Tech Buddy API", () => {
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
 
+        it('it should POST a single video', (done) => {
+            chai.request(server)
+                .post('/api/singleVideoUpload')
+                .set('auth-token', token)
+                .field('Content-Type', 'multipart/form-data')
+                .attach('video', 'C:/Users/Andrew/Downloads/Video/videoplayback_3.mp4')
+                .end((err, response) =>{
+                    response.should.have.status(200);                    
+                    response.body.should.have.property('message').eq("Video Uploaded Successfully");
+                    done();
+                });
+        });
+
         it('it should not POST a single video due to server error', (done) => {
             chai.request(server)
                 .post('/api/singleVideoUpload')
