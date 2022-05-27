@@ -12,6 +12,20 @@ describe("Tech Buddy API", () => {
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
 
+        it('it should POST multiple images', (done) => {
+            chai.request(server)
+                .post('/api/multipleImagesUpload')
+                .set('auth-token', token)
+                .field('Content-Type', 'multipart/form-data')
+                .attach('images', 'C:/Users/Andrew/Pictures/cheetah.jpg')
+                .attach('images', 'C:/Users/Andrew/Pictures/Cheetahs-1-800x400.jpg')
+                .end((err, response) =>{
+                    response.should.have.status(200);                    
+                    response.body.should.have.property('message').eq("Images Uploaded Successfully");
+                    done();
+                });
+        });
+
         it('it should not POST any images due to server error', (done) => {
             chai.request(server)
                 .post('/api/multipleImagesUpload')

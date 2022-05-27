@@ -11,17 +11,18 @@ describe("Tech Buddy API", () => {
     describe('POST /api/singleImageUpload', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
-        // it('it should POST a single image', (done) => {
-        //     chai.request(server)
-        //         .post('/api/singleImageUpload')
-        //         .set('auth-token', token)
-        //         .end((err, response) =>{
-        //             response.should.have.status(201);
-                    
-        //             response.body.should.have.property('message').eq("Image Uploaded Successfully");
-        //             done();
-        //         });
-        // });
+        it('it should POST a single image', (done) => {
+            chai.request(server)
+                .post('/api/singleImageUpload')
+                .set('auth-token', token)
+                .field('Content-Type', 'multipart/form-data')
+                .attach('image', 'C:/Users/Andrew/Pictures/cheetah.jpg')
+                .end((err, response) =>{
+                    response.should.have.status(200);                    
+                    response.body.should.have.property('message').eq("Image Uploaded Successfully");
+                    done();
+                });
+        });
 
         it('it should not POST a single image due to server error', (done) => {
             chai.request(server)
