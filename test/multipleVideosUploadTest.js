@@ -11,6 +11,20 @@ describe("Tech Buddy API", () => {
     describe('POST /api/multipleVideosUpload', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
+
+        it('it should POST multiple videos', (done) => {
+            chai.request(server)
+                .post('/api/multipleVideosUpload')
+                .set('auth-token', token)
+                .field('Content-Type', 'multipart/form-data')
+                .attach('videos', 'C:/Users/Andrew/Downloads/Video/videoplayback_3.mp4')
+                .attach('videos', 'C:/Users/Andrew/Downloads/Video/videoplayback_4.mp4')
+                .end((err, response) =>{
+                    response.should.have.status(200);                    
+                    response.body.should.have.property('message').eq("Videos Uploaded Successfully");
+                    done();
+                });
+        });
         
         it('it should not POST any videos due to server error', (done) => {
             chai.request(server)
