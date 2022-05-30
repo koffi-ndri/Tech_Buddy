@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-// var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
 const registerUserRoute = require('./routes/authentication/register');
@@ -24,8 +24,8 @@ const retrieveVideosRoute = require('./routes/video/retrieve/videos');
 const app = express();
 
 // view engine setup
-// app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'pug');
+ app.set('views', path.join(__dirname, 'views'));
+ app.set('view engine', 'pug');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -40,7 +40,7 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
   console.log("Connected to database");
 });
 
-// app.use('/', indexRouter);
+ app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
 //route middlewares
