@@ -5,7 +5,7 @@ An API for uploading and retrieving images and videos
 This project is an API (Application Programming Interface) that will allow a user to upload and retrieve assets (images and videos) to and from a content management platform named Cloudinary respectively.
 
 # Description
-During uploading, the assets are first stored in a folder named public/imageUpload for images or public/videoUpload (not visible on github because they are empty folders) for videos. Then, these assets are transfered from the folders to the Cloudinary content management platform.
+During uploading, the assets are first stored in a folder named public/imageUpload for images or public/videoUpload for videos (these folders are not visible on github because they are empty folders). Then, these assets are transfered from the folders to the Cloudinary content management platform.
 
 Tech Buddy API consists of eight endpoints:
 
@@ -17,3 +17,16 @@ Tech Buddy API consists of eight endpoints:
 - /api/multipleVideosUpload: used to upload multiple videos
 - /api/retrieveImages: used to retrieve images from Cloudinary
 - /api/retrieveVideos: used to retrieve videos from Cloudinary
+
+Each of the last six endpoints have their corresponding unit tests and they are tested in case of success, of server error and of accessibility.
+
+#Modules and middlewares used
+
+These are the modules and middlewares used for this project:
+
+- express
+- cloudinary
+- multer
+- mocha and chai
+- mongoose
+- 
