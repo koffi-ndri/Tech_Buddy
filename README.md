@@ -38,6 +38,7 @@ For the API to work, you just have to run this command witch is `npm install`.
 # How to test the API
 
 To test the API, we need to use an API client named Postman. To be able to test an authenticated endpoint, a user have to first login or register before signing in if that user doesn't exists. If not, the server will send a response that indicates that the user is trying to access an authenticated endpoint as it is shown in the following image:
+
 ![image](https://user-images.githubusercontent.com/87645176/172191416-c2b0bb00-286d-493f-a071-f88f80ab556e.png)
 
 When a user logs in, a token is sent as a response from the server as we can see in the following image:
