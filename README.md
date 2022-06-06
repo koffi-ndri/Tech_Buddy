@@ -1,10 +1,10 @@
 # Tech_Buddy
 An API for uploading and retrieving images and videos
 
-# About
+## About
 This project is an API (Application Programming Interface) that will allow a user to upload and retrieve assets (images and videos) to and from a content management platform named Cloudinary respectively.
 
-# Description
+## Description
 During uploading, the assets are first stored in a folder named public/imageUpload for images or public/videoUpload for videos (these folders are not visible on github because they are empty folders). Then, these assets are transfered from the folders to the Cloudinary content management platform. When the assets are retrieved, the server sends a response that displays a list of images or videos URLs.
 
 Tech Buddy API consists of eight endpoints:
@@ -20,7 +20,7 @@ Tech Buddy API consists of eight endpoints:
 
 Each of the last six endpoints have their corresponding unit tests files and they are tested in case of success, of server error and of accessibility. These files are stored in a folder named test.
 
-# Packages used
+## Packages used
 
 These are the packages used for this project:
 
@@ -31,11 +31,11 @@ These are the packages used for this project:
 - mongoose (for mongodb database to store users data)
 - joi (for validating users data)
 
-# Installation
+## Installation
 
 For the API to work, you just have to run this command witch is `npm install`.
 
-# How to test the API
+## How to test the API
 
 To test the API, we need to use an API client named Postman. To be able to test an authenticated endpoint, a user have to first login or register before signing in if that user doesn't exists. If not, the server will send a response that indicates that the user is trying to access an authenticated endpoint as it is shown in the following image:
 
