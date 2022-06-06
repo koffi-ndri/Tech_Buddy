@@ -20,9 +20,9 @@ Tech Buddy API consists of eight endpoints:
 
 Each of the last six endpoints have their corresponding unit tests files and they are tested in case of success, of server error and of accessibility. These files are stored in a folder named test.
 
-# Modules or middlewares used
+# Packages used
 
-These are the modules and middlewares used for this project:
+These are the packages used for this project:
 
 - express
 - cloudinary
