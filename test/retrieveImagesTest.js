@@ -20,12 +20,12 @@ chai.use(chaiHttp);
     //token = userToken(user.email);
 
 describe("Tech Buddy API", () => {
-    describe('GET /api/retrieveImages', async() =>{
+    describe('GET /api/retrieve/images', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
         it('it should GET a list of images urls', (done) =>{
             chai.request(server)
-                .get('/api/retrieveImages')
+                .get('/api/retrieve/images')
                 .set('auth-token', token)
                 .end((err, response) =>{
                     if(err) return done(err);
@@ -37,7 +37,7 @@ describe("Tech Buddy API", () => {
 
         it('it should not retrieve any images due to unauthorized access', (done) => {
             chai.request(server)
-                .get('/api/retrieveImages')
+                .get('/api/retrieve/images')
                 .end((err, response) =>{
                     response.should.have.status(401);
                     response.text.should.be.eq("Access Denied");

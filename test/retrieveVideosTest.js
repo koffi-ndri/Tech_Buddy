@@ -8,12 +8,12 @@ chai.should();
 chai.use(chaiHttp);
 
 describe("Tech Buddy API", () => {
-    describe('GET /api/retrieveVideos', async() =>{
+    describe('GET /api/retrieve/videos', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail)
         it('it should GET a list of videos urls', (done) =>{
             chai.request(server)
-                .get('/api/retrieveVideos')
+                .get('/api/retrieve/videos')
                 .set('auth-token', token)
                 .end((err, response) =>{
                     if(err) return done(err);
@@ -25,7 +25,7 @@ describe("Tech Buddy API", () => {
 
         it('it should not retrieve any videos due to unauthorized access', (done) => {
             chai.request(server)
-                .get('/api/retrieveVideos')
+                .get('/api/retrieve/videos')
                 .end((err, response) =>{
                     response.should.have.status(401);
                     response.text.should.be.eq("Access Denied");

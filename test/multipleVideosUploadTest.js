@@ -8,13 +8,13 @@ chai.should();
 chai.use(chaiHttp);
 
 describe("Tech Buddy API", () => {
-    describe('POST /api/multipleVideosUpload', async() =>{
+    describe('POST /api/multiple/videosUpload', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
 
         it('it should POST multiple videos', (done) => {
             chai.request(server)
-                .post('/api/multipleVideosUpload')
+                .post('/api/multiple/videosUpload')
                 .set('auth-token', token)
                 .field('Content-Type', 'multipart/form-data')
                 .attach('videos', 'C:/Users/Andrew/Downloads/Video/videoplayback_3.mp4')
@@ -28,7 +28,7 @@ describe("Tech Buddy API", () => {
         
         it('it should not POST any videos due to server error', (done) => {
             chai.request(server)
-                .post('/api/multipleVideosUpload')
+                .post('/api/multiple/videosUpload')
                 .set('auth-token', token)
                 .end((err, response) =>{
                     response.should.have.status(500);
@@ -38,7 +38,7 @@ describe("Tech Buddy API", () => {
 
         it('it should not POST any videos due to unauthorized access', (done) => {
             chai.request(server)
-                .post('/api/multipleVideosUpload')
+                .post('/api/multiple/videosUpload')
                 .end((err, response) =>{
                     response.should.have.status(401);
                     response.text.should.be.eq("Access Denied");

@@ -8,13 +8,13 @@ chai.should();
 chai.use(chaiHttp);
 
 describe("Tech Buddy API", () => {
-    describe('POST /api/multipleImagesUpload', async() =>{
+    describe('POST /api/multiple/imagesUpload', async() =>{
         const userEmail = "Andrew@abcd.com";
         const token = await userToken(userEmail);
 
         it('it should POST multiple images', (done) => {
             chai.request(server)
-                .post('/api/multipleImagesUpload')
+                .post('/api/multiple/imagesUpload')
                 .set('auth-token', token)
                 .field('Content-Type', 'multipart/form-data')
                 .attach('images', 'C:/Users/Andrew/Pictures/cheetah.jpg')
@@ -28,7 +28,7 @@ describe("Tech Buddy API", () => {
 
         it('it should not POST any images due to server error', (done) => {
             chai.request(server)
-                .post('/api/multipleImagesUpload')
+                .post('/api/multiple/imagesUpload')
                 .set('auth-token', token)
                 .end((err, response) =>{
                     response.should.have.status(500);
@@ -38,7 +38,7 @@ describe("Tech Buddy API", () => {
 
         it('it should not POST any images due to unauthorized access', (done) => {
             chai.request(server)
-                .post('/api/multipleImagesUpload')
+                .post('/api/multiple/imagesUpload')
                 .end((err, response) =>{
                     response.should.have.status(401);
                     response.text.should.be.eq("Access Denied");
