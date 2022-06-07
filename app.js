@@ -12,14 +12,10 @@ const dotenv = require('dotenv');
 const indexRouter = require('./routes/index');
 // var usersRouter = require('./routes/users');
 
-const registerUserRoute = require('./routes/authentication/register');
-const loginRoute = require('./routes/authentication/login');
-const uploadSingleImageRoute = require('./routes/image/upload/single');
-const uploadSingleVideoRoute = require('./routes/video/upload/single');
-const uploadMultipleImageRoute = require('./routes/image/upload/multiple');
-const uploadMultipleVideoRoute = require('./routes/video/upload/multiple');
-const retrieveImagesRoute = require('./routes/image/retrieve/images');
-const retrieveVideosRoute = require('./routes/video/retrieve/videos');
+const authenticationRoute = require('./routes/auth');
+const uploadSingleAssetRoute = require('./routes/single');
+const uploadMultipleAssetsRoute = require('./routes/multiple');
+const retrieveAssetsRoute = require('./routes/retrieve');
 
 const app = express();
 
@@ -44,14 +40,12 @@ mongoose.connect(process.env.DB_CONNECT, {useNewUrlParser: true}, () =>{
 // app.use('/users', usersRouter);
 
 //route middlewares
-app.use('/api/register', registerUserRoute);
-app.use('/api/login', loginRoute);
-app.use('/api/singleImageUpload', verifyAccess, uploadImage.single('image'), uploadSingleImageRoute);
-app.use('/api/singleVideoUpload', verifyAccess, uploadVideo.single('video'),uploadSingleVideoRoute);
-app.use('/api/multipleImagesUpload', verifyAccess, uploadImage.array('images'), uploadMultipleImageRoute);
-app.use('/api/multipleVideosUpload', verifyAccess, uploadVideo.array('videos'),uploadMultipleVideoRoute);
-app.use('/api/retrieveImages', verifyAccess, retrieveImagesRoute);
-app.use('/api/retrieveVideos', verifyAccess, retrieveVideosRoute);
+
+app.use('/api/auth', authenticationRoute);
+app.use('/api/single', verifyAccess, uploadSingleAssetRoute);
+app.use('/api/multiple', verifyAccess, uploadMultipleAssetsRoute);
+app.use('/api/retrieve', verifyAccess, retrieveAssetsRoute);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

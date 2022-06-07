@@ -1,7 +1,7 @@
 const cloudinary = require('../utils/cloudinary');
 const fs = require('fs');
 
-module.exports.multipleVideoController = async(req, res)=>{
+module.exports.multipleVideosController = async(req, res)=>{
     try{
         const results = [];
         const files = req.files;
