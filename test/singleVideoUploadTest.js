@@ -2,6 +2,7 @@ const {userToken} = require('../utils/token');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
+const path = require('path');
 
 chai.should();
 
@@ -17,7 +18,7 @@ describe("Tech Buddy API", () => {
                 .post('/api/single/videoUpload')
                 .set('auth-token', token)
                 .field('Content-Type', 'multipart/form-data')
-                .attach('video', 'C:/Users/Andrew/Downloads/Video/videoplayback_3.mp4')
+                .attach('video', path.join(__dirname, '../public/assets/videoplayback_2.mp4'))
                 .end((err, response) =>{
                     response.should.have.status(200);                    
                     response.body.should.have.property('message').eq("Video Uploaded Successfully");

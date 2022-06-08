@@ -2,6 +2,7 @@ const {userToken} = require('../utils/token');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../app');
+const path = require('path');
 
 chai.should();
 
@@ -17,8 +18,8 @@ describe("Tech Buddy API", () => {
                 .post('/api/multiple/imagesUpload')
                 .set('auth-token', token)
                 .field('Content-Type', 'multipart/form-data')
-                .attach('images', 'C:/Users/Andrew/Pictures/cheetah.jpg')
-                .attach('images', 'C:/Users/Andrew/Pictures/Cheetahs-1-800x400.jpg')
+                .attach('images', path.join(__dirname, '../public/assets/cheetah.jpg'))
+                .attach('images', path.join(__dirname, '../public/assets/Cheetahs-1-800x400.jpg'))
                 .end((err, response) =>{
                     response.should.have.status(200);                    
                     response.body.should.have.property('message').eq("Images Uploaded Successfully");
