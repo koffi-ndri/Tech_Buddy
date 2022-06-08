@@ -1,7 +1,6 @@
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
-const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const {uploadImage, uploadVideo} = require('./utils/multer');
 const {verifyAccess} = require('./utils/verifyToken');
