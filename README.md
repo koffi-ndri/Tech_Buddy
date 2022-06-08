@@ -9,14 +9,14 @@ During uploading, the assets are first stored in a folder named public/imageUplo
 
 Tech Buddy API consists of eight endpoints:
 
-- `/api/register`: used to register a user
-- `/api/login`: used for user login
-- `/api/singleImageUpload`: used to upload a single image
-- `/api/multipleImagesUpload`: used to upload multiple images
-- `/api/singleVideoUpload`: used to upload a single video
-- `/api/multipleVideosUpload`: used to upload multiple videos
-- `/api/retrieveImages`: used to retrieve images from Cloudinary
-- `/api/retrieveVideos`: used to retrieve videos from Cloudinary
+- `/api/auth/register`: used to register a user
+- `/api/auth/login`: used for user login
+- `/api/single/imageUpload`: used to upload a single image
+- `/api/multiple/imagesUpload`: used to upload multiple images
+- `/api/single/videoUpload`: used to upload a single video
+- `/api/multiple/videosUpload`: used to upload multiple videos
+- `/api/retrieve/images`: used to retrieve images from Cloudinary
+- `/api/retrieve/videos`: used to retrieve videos from Cloudinary
 
 Each of the last six endpoints have their corresponding unit tests files and they are tested in case of success, of server error and of accessibility. These files are stored in a folder named test.
 
